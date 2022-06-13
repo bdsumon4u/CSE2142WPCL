@@ -47,10 +47,10 @@ public class StudentList {
         try {
             BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
             String r = s.readLine();
-            System.out.println(r);
+            // System.out.println(r);
             String []i = r.split(", ");
             Random x = new Random();
-            int y = x.nextInt();
+            int y = x.nextInt(i.length);
             System.out.println(i[y]);
         } catch (Exception e) {
             //
