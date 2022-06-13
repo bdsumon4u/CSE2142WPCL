@@ -5,20 +5,20 @@ public class StudentList {
     public static void main(String[] args) {
 
         // Check arguments
-        switch (args[0]) {
-            case "a":
+        switch (args[0].charAt(0)) {
+            case 'a':
                 getAll();
                 break;
-            case "c":
+            case 'c':
                 getCount();
                 break;
-            case "r":
+            case 'r':
                 getRandom();
                 break;
-            case "+":
+            case '+':
                 addNew(args[0].substring(1));
                 break;
-            case "?":
+            case '?':
                 search(args[0].substring(1));
                 break;
             default:
