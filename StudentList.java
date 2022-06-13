@@ -32,7 +32,7 @@ public class StudentList {
         try {
             BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
             String r = s.readLine();
-            String i[] = r.split(",");
+            String []i = r.split(",");
             for (String j : i) {
                 System.out.println(j);
             }
@@ -48,7 +48,7 @@ public class StudentList {
             BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
             String r = s.readLine();
             System.out.println(r);
-            String i[] = r.split(",");
+            String []i = r.split(",");
             Random x = new Random();
             int y = x.nextInt();
             System.out.println(i[y]);
@@ -80,7 +80,7 @@ public class StudentList {
         try {
             BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
             String r = s.readLine();
-            String i[] = r.split(",");
+            String []i = r.split(",");
             boolean done = false;
             for (int idx = 0; idx < i.length && !done; idx++) {
                 if (i[idx].equals(t)) {
@@ -99,7 +99,7 @@ public class StudentList {
         try {
             BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
             String D = s.readLine();
-            char a[] = D.toCharArray();
+            char []a = D.toCharArray();
             boolean in_word = false;
             int count = 0;
             for (char c : a) {
