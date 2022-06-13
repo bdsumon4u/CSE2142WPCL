@@ -94,12 +94,12 @@ public class StudentList {
     private static void getCount() {
         System.out.println("Loading data ...");
         try {
-            BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-            String D = s.readLine();
-            char []a = D.toCharArray();
+            BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+            String students = studentReader.readLine();
+            char []chars = students.toCharArray();
             int count = 1;
-            for (char c : a) {
-                if (c ==' ') {
+            for (char ch : chars) {
+                if (ch ==' ') {
                     count++;
                 }
             }
