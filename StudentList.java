@@ -79,8 +79,8 @@ public class StudentList {
             BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
             String students = studentReader.readLine();
             String []studentList = students.split(", ");
-            for (int idx = 0; idx < studentList.length; idx++) {
-                if (studentList[idx].equals(studentName)) {
+            for (String name : studentList) {
+                if (name.equals(studentName)) {
                     System.out.println("We found it!");
                     break;
                 }
