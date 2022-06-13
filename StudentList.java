@@ -61,13 +61,14 @@ public class StudentList {
     private static void addNew(String t) {
         System.out.println("Loading data ...");
         try {
-            BufferedWriter s = new BufferedWriter(new FileWriter("students.txt", true));
+            String students = new Scanner(new FileInputStream("students.txt")).nextLine();
+            PrintWriter out = new PrintWriter("students.txt");
             Date d = new Date();
             String df = "dd/mm/yyyy-hh:mm:ss a";
             DateFormat dateFormat = new SimpleDateFormat(df);
             String fd= dateFormat.format(d);
-            s.write(", " + t + "\nList last updated on " + fd);
-            s.close();
+            out.write(students + ", " + t + "\nList last updated on " + fd);
+            out.close();
         } catch (Exception e) {
             //
         }
