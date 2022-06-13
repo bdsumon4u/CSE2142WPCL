@@ -101,20 +101,13 @@ public class StudentList {
             BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
             String D = s.readLine();
             char []a = D.toCharArray();
-            boolean in_word = false;
-            int count = 0;
+            int count = 1;
             for (char c : a) {
                 if (c ==' ') {
-                    if (!in_word) {
-                        count++;
-                        in_word = true;
-                    }
-                    else {
-                        in_word = false;
-                    }
+                    count++;
                 }
             }
-            System.out.println(count + " word(s) found " + a.length);
+            System.out.println(count + " word(s) found.");
         } catch (Exception e) {
             //
         }
