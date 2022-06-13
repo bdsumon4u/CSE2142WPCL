@@ -45,13 +45,12 @@ public class StudentList {
     private static void getRandom() {
         System.out.println("Loading data ...");
         try {
-            BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-            String r = s.readLine();
-            // System.out.println(r);
-            String []i = r.split(", ");
-            Random x = new Random();
-            int y = x.nextInt(i.length);
-            System.out.println(i[y]);
+            BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+            String students = studentReader.readLine();
+            // System.out.println(students);
+            String []studentList = students.split(", ");
+            int random = new Random().nextInt(studentList.length);
+            System.out.println(studentList[random]);
         } catch (Exception e) {
             //
         }
