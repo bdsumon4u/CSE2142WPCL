@@ -73,17 +73,16 @@ public class StudentList {
         System.out.println("Data Loaded.");
     }
 
-    private static void search(String t) {
+    private static void search(String studentName) {
         System.out.println("Loading data ...");
         try {
-            BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-            String r = s.readLine();
-            String []i = r.split(", ");
-            boolean done = false;
-            for (int idx = 0; idx < i.length && !done; idx++) {
-                if (i[idx].equals(t)) {
+            BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+            String students = studentReader.readLine();
+            String []studentList = students.split(", ");
+            for (int idx = 0; idx < studentList.length; idx++) {
+                if (studentList[idx].equals(studentName)) {
                     System.out.println("We found it!");
-                    done = true;
+                    break;
                 }
             }
         } catch (Exception e) {
