@@ -30,8 +30,7 @@ public class StudentList {
     private static void getAll() {
         System.out.println("Loading data ...");
         try {
-            BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-            String students = studentReader.readLine();
+            String students = readStudents();
             String []studentList = students.split(", ");
             for (String studentName : studentList) {
                 System.out.println(studentName);
@@ -45,8 +44,7 @@ public class StudentList {
     private static void getRandom() {
         System.out.println("Loading data ...");
         try {
-            BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-            String students = studentReader.readLine();
+            String students = readStudents();
             // System.out.println(students);
             String []studentList = students.split(", ");
             int random = new Random().nextInt(studentList.length);
@@ -60,7 +58,7 @@ public class StudentList {
     private static void addNew(String studentName) {
         System.out.println("Loading data ...");
         try {
-            String students = new Scanner(new FileInputStream("students.txt")).nextLine();
+            String students = readStudents();
             PrintWriter out = new PrintWriter("students.txt");
             DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy-hh:mm:ss a");
             String formattedDate = dateFormat.format(new Date());
@@ -76,8 +74,7 @@ public class StudentList {
     private static void search(String studentName) {
         System.out.println("Loading data ...");
         try {
-            BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-            String students = studentReader.readLine();
+            String students = readStudents();
             String []studentList = students.split(", ");
             for (String name : studentList) {
                 if (name.equals(studentName)) {
@@ -94,8 +91,7 @@ public class StudentList {
     private static void getCount() {
         System.out.println("Loading data ...");
         try {
-            BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-            String students = studentReader.readLine();
+            String students = readStudents();
             char []chars = students.toCharArray();
             int count = 1;
             for (char ch : chars) {
@@ -108,5 +104,12 @@ public class StudentList {
             //
         }
         System.out.println("Data Loaded.");
+    }
+
+    private static String readStudents() throws IOException {
+        BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+        String students = studentReader.readLine();
+        studentReader.close();
+        return students;
     }
 }
