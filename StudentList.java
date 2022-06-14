@@ -57,16 +57,14 @@ public class StudentList {
         System.out.println("Data Loaded.");
     }
 
-    private static void addNew(String t) {
+    private static void addNew(String studentName) {
         System.out.println("Loading data ...");
         try {
             String students = new Scanner(new FileInputStream("students.txt")).nextLine();
             PrintWriter out = new PrintWriter("students.txt");
-            Date d = new Date();
-            String df = "dd/mm/yyyy-hh:mm:ss a";
-            DateFormat dateFormat = new SimpleDateFormat(df);
-            String fd= dateFormat.format(d);
-            out.write(students + ", " + t + "\nList last updated on " + fd);
+            DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy-hh:mm:ss a");
+            String formattedDate = dateFormat.format(new Date());
+            out.write(students + ", " + studentName + "\nList last updated on " + formattedDate);
             out.close();
         } catch (Exception e) {
             //
