@@ -30,8 +30,7 @@ public class StudentList {
     private static void getAll() {
         System.out.println("Loading data ...");
         try {
-            String students = readStudents();
-            String []studentList = students.split(", ");
+            String []studentList = studentArray();
             for (String studentName : studentList) {
                 System.out.println(studentName);
             }
@@ -44,9 +43,7 @@ public class StudentList {
     private static void getRandom() {
         System.out.println("Loading data ...");
         try {
-            String students = readStudents();
-            // System.out.println(students);
-            String []studentList = students.split(", ");
+            String []studentList = studentArray();
             int random = new Random().nextInt(studentList.length);
             System.out.println(studentList[random]);
         } catch (Exception e) {
@@ -74,8 +71,7 @@ public class StudentList {
     private static void search(String studentName) {
         System.out.println("Loading data ...");
         try {
-            String students = readStudents();
-            String []studentList = students.split(", ");
+            String []studentList = studentArray();
             for (String name : studentList) {
                 if (name.equals(studentName)) {
                     System.out.println("We found it!");
@@ -111,5 +107,8 @@ public class StudentList {
         String students = studentReader.readLine();
         studentReader.close();
         return students;
+    }
+    private static String[] studentArray() throws IOException {
+        return readStudents().split(", ");
     }
 }
