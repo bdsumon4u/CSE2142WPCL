@@ -12,6 +12,9 @@ public class StudentList {
             case 'c':
                 getCount();
                 break;
+            case 'h':
+                getHelp();
+                break;
             case 'r':
                 getRandom();
                 break;
@@ -23,6 +26,7 @@ public class StudentList {
                 break;
             default:
                 System.out.println("Invalid argument");
+                System.out.println("Use 'h' flag for help");
                 System.exit(1);
         }
     }
@@ -110,5 +114,14 @@ public class StudentList {
     }
     private static String[] studentArray() throws IOException {
         return readStudents().split(", ");
+    }
+
+    private static void getHelp() {
+        System.out.println("Use: a - for all students.");
+        System.out.println("Use: c - for number of words.");
+        System.out.println("Use: h - for getting help.");
+        System.out.println("Use: r - for random student.");
+        System.out.println("Use: +StudentName - for adding a new student.");
+        System.out.println("Use: ?StudentName - for searching a student.");
     }
 }
