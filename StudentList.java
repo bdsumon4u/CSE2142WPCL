@@ -4,35 +4,29 @@ import java.util.*;
 public class StudentList {
     public static void main(String[] args) {
 
-        // Check arguments
-        switch (args[0].charAt(0)) {
-            case 'a':
-                getAll();
-                break;
-            case 'c':
-                getCount();
-                break;
-            case 'h':
-                getHelp();
-                break;
-            case 'r':
-                getRandom();
-                break;
-            case '+':
-                addNew(args[0].substring(1));
-                break;
-            case '?':
-                search(args[0].substring(1));
-                break;
-            default:
-                System.out.println("Invalid argument");
-                System.out.println("Use 'h' flag for help");
-                System.exit(1);
+        char query = args[0].charAt(0);
+
+        if (query == Constant.QUERY_ALL) {
+            getAll();
+        } else if (query == Constant.QUERY_COUNT) {
+            getCount();
+        } else if (query == Constant.QUERY_HELP) {
+            getHelp();
+        } else if (query == Constant.QUERY_RANDOM) {
+            getRandom();
+        } else if (query == Constant.QUERY_INSERT) {
+            addNew(args[0].substring(1));
+        } else if (query == Constant.QUERY_SEARCH) {
+            search(args[0].substring(1));
+        } else {
+            System.out.println(Constant.MSG_INVALID_ARGUMENT);
+            System.out.println(Constant.MSG_SUGGEST_FOR_HELP);
+            System.exit(1);
         }
     }
 
     private static void getAll() {
-        System.out.println("Loading data ...");
+        System.out.println(Constant.MSG_DATA_LOADING);
         try {
             String []studentList = studentArray();
             for (String studentName : studentList) {
@@ -41,11 +35,11 @@ public class StudentList {
         } catch (Exception e) {
             //
         }
-        System.out.println("Data Loaded.");
+        System.out.println(Constant.MSG_DATA_LOADED);
     }
 
     private static void getRandom() {
-        System.out.println("Loading data ...");
+        System.out.println(Constant.MSG_DATA_LOADING);
         try {
             String []studentList = studentArray();
             int random = new Random().nextInt(studentList.length);
@@ -53,43 +47,44 @@ public class StudentList {
         } catch (Exception e) {
             //
         }
-        System.out.println("Data Loaded.");
+        System.out.println(Constant.MSG_DATA_LOADED);
     }
 
     private static void addNew(String studentName) {
-        System.out.println("Loading data ...");
+        System.out.println(Constant.MSG_DATA_LOADING);
         try {
             String students = readStudents();
-            PrintWriter out = new PrintWriter("students.txt");
-            DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy-hh:mm:ss a");
+            PrintWriter out = new PrintWriter(Constant.FILE_STUDENTS);
+            DateFormat dateFormat = new SimpleDateFormat(Constant.SIMPLE_DATE_FORMAT);
             String formattedDate = dateFormat.format(new Date());
-            out.write(students + ", " + studentName + "\nList last updated on " + formattedDate);
+            out.println(students + Constant.STUDENT_DATA_DELIMITER + studentName);
+            out.printf( Constant.MSG_LIST_UPDATED, formattedDate);
             out.close();
         } catch (Exception e) {
             //
         }
 
-        System.out.println("Data Loaded.");
+        System.out.println(Constant.MSG_DATA_LOADED);
     }
 
     private static void search(String studentName) {
-        System.out.println("Loading data ...");
+        System.out.println(Constant.MSG_DATA_LOADING);
         try {
             String []studentList = studentArray();
             for (String name : studentList) {
                 if (name.equals(studentName)) {
-                    System.out.println("We found it!");
+                    System.out.println(Constant.MSG_STUDENT_FOUND);
                     break;
                 }
             }
         } catch (Exception e) {
             //
         }
-        System.out.println("Data Loaded.");
+        System.out.println(Constant.MSG_DATA_LOADED);
     }
 
     private static void getCount() {
-        System.out.println("Loading data ...");
+        System.out.println(Constant.MSG_DATA_LOADING);
         try {
             String students = readStudents();
             char []chars = students.toCharArray();
@@ -99,29 +94,29 @@ public class StudentList {
                     count++;
                 }
             }
-            System.out.println(count + " word(s) found.");
+            System.out.printf(Constant.MSG_FOUND_COUNT, count);
         } catch (Exception e) {
             //
         }
-        System.out.println("Data Loaded.");
+        System.out.println(Constant.MSG_DATA_LOADED);
     }
 
     private static String readStudents() throws IOException {
-        BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+        BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream(Constant.FILE_STUDENTS)));
         String students = studentReader.readLine();
         studentReader.close();
         return students;
     }
     private static String[] studentArray() throws IOException {
-        return readStudents().split(", ");
+        return readStudents().split(Constant.STUDENT_DATA_DELIMITER);
     }
 
     private static void getHelp() {
-        System.out.println("Use: a - for all students.");
-        System.out.println("Use: c - for number of words.");
-        System.out.println("Use: h - for getting help.");
-        System.out.println("Use: r - for random student.");
-        System.out.println("Use: +StudentName - for adding a new student.");
-        System.out.println("Use: ?StudentName - for searching a student.");
+        System.out.println(Constant.HELP_QUERY_ALL);
+        System.out.println(Constant.HELP_QUERY_COUNT);
+        System.out.println(Constant.HELP_QUERY_HELP);
+        System.out.println(Constant.HELP_QUERY_RANDOM);
+        System.out.println(Constant.HELP_QUERY_INSERT);
+        System.out.println(Constant.HELP_QUERY_SEARCH);
     }
 }
