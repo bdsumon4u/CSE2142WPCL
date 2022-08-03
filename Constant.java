@@ -13,6 +13,7 @@ public final class Constant {
 
     public static String SIMPLE_DATE_FORMAT = "dd/mm/yyyy-hh:mm:ss a";
 
+    public static String MSG_EMPTY_ARGUMENT = "Argument must not be empty";
     public static String MSG_INVALID_ARGUMENT = "Invalid argument";
     public static String MSG_SUGGEST_FOR_HELP = "Use 'h' flag for help";
     public static String MSG_DATA_LOADING = "Loading data ...";

@@ -4,6 +4,12 @@ import java.util.*;
 public class StudentList {
     public static void main(String[] args) {
 
+        if (args.length == 0) {
+            System.out.println(Constant.MSG_EMPTY_ARGUMENT);
+            getHelp();
+            System.exit(1);
+        }
+
         char query = args[0].charAt(0);
 
         if (query == Constant.QUERY_ALL) {
