@@ -34,8 +34,7 @@ public class StudentList {
     private static void getAll() {
         System.out.println(Constant.MSG_DATA_LOADING);
         try {
-            String []studentList = studentArray();
-            for (String studentName : studentList) {
+            for (String studentName : studentArray()) {
                 System.out.println(studentName);
             }
         } catch (Exception e) {
@@ -76,8 +75,7 @@ public class StudentList {
     private static void search(String studentName) {
         System.out.println(Constant.MSG_DATA_LOADING);
         try {
-            String []studentList = studentArray();
-            for (String name : studentList) {
+            for (String name : studentArray()) {
                 if (name.equals(studentName)) {
                     System.out.println(Constant.MSG_STUDENT_FOUND);
                     break;
@@ -92,10 +90,8 @@ public class StudentList {
     private static void getCount() {
         System.out.println(Constant.MSG_DATA_LOADING);
         try {
-            String students = readStudents();
-            char []chars = students.toCharArray();
             int count = 1;
-            for (char ch : chars) {
+            for (char ch : readStudents().toCharArray()) {
                 if (ch ==' ') {
                     count++;
                 }
@@ -108,11 +104,13 @@ public class StudentList {
     }
 
     private static String readStudents() throws IOException {
-        BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream(Constant.FILE_STUDENTS)));
-        String students = studentReader.readLine();
-        studentReader.close();
-        return students;
+        try (BufferedReader studentReader = new BufferedReader(new InputStreamReader(new FileInputStream(Constant.FILE_STUDENTS)))) {
+            return studentReader.readLine();
+        } catch (Exception e) {
+            throw e;
+        }
     }
+
     private static String[] studentArray() throws IOException {
         return readStudents().split(Constant.STUDENT_DATA_DELIMITER);
     }
