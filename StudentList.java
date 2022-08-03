@@ -90,13 +90,10 @@ public class StudentList {
     private static void getCount() {
         System.out.println(Constant.MSG_DATA_LOADING);
         try {
-            int count = 1;
-            for (char ch : readStudents().toCharArray()) {
-                if (ch ==' ') {
-                    count++;
-                }
-            }
-            System.out.printf(Constant.MSG_FOUND_COUNT, count);
+            System.out.printf(
+                Constant.MSG_FOUND_COUNT,
+                readStudents().split("( )+").length
+            );
         } catch (Exception e) {
             //
         }
