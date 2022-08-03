@@ -21,9 +21,9 @@ public class StudentList {
         } else if (query == Constant.QUERY_RANDOM) {
             getRandom();
         } else if (query == Constant.QUERY_INSERT) {
-            addNew(args[0].substring(1));
+            addNew(args[0].substring(1).trim());
         } else if (query == Constant.QUERY_SEARCH) {
-            search(args[0].substring(1));
+            search(args[0].substring(1).trim());
         } else {
             System.out.println(Constant.MSG_INVALID_ARGUMENT);
             System.out.println(Constant.MSG_SUGGEST_FOR_HELP);
